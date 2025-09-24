@@ -1,0 +1,62 @@
+default_agent: mcp_server_agentcore_8803e86f
+agents:
+  strands_claude_getting_started_cb098c4e:
+    name: strands_claude_getting_started_cb098c4e
+    entrypoint: /workshop/strands_agentcore/strands_claude.py
+    platform: linux/arm64
+    container_runtime: none
+    aws:
+      execution_role: arn:aws:iam::522040354751:role/AmazonBedrockAgentCoreSDKRuntime-us-east-1-c97549402b
+      execution_role_auto_create: false
+      account: '522040354751'
+      region: us-east-1
+      ecr_repository: 522040354751.dkr.ecr.us-east-1.amazonaws.com/bedrock-agentcore-strands_claude_getting_started_cb098c4e
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: strands_claude_getting_started_cb098c4e-raiQA5FIyh
+      agent_arn: arn:aws:bedrock-agentcore:us-east-1:522040354751:runtime/strands_claude_getting_started_cb098c4e-raiQA5FIyh
+      agent_session_id: 3dd2d2b7-1902-4529-857f-8922cf91f8c3
+    codebuild:
+      project_name: bedrock-agentcore-strands_claude_getting_started_cb098c4e-builder
+      execution_role: arn:aws:iam::522040354751:role/AmazonBedrockAgentCoreSDKCodeBuild-us-east-1-c97549402b
+      source_bucket: bedrock-agentcore-codebuild-sources-522040354751-us-east-1
+    authorizer_configuration: null
+    oauth_configuration: null
+  mcp_server_agentcore_8803e86f:
+    name: mcp_server_agentcore_8803e86f
+    entrypoint: /workshop/strands_agentcore/mcp_server.py
+    platform: linux/arm64
+    container_runtime: none
+    aws:
+      execution_role: arn:aws:iam::522040354751:role/AmazonBedrockAgentCoreSDKRuntime-us-east-1-ffa0863889
+      execution_role_auto_create: false
+      account: '522040354751'
+      region: us-east-1
+      ecr_repository: 522040354751.dkr.ecr.us-east-1.amazonaws.com/bedrock-agentcore-mcp_server_agentcore_8803e86f
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: MCP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: mcp_server_agentcore_8803e86f-6Wd4eoDqHL
+      agent_arn: arn:aws:bedrock-agentcore:us-east-1:522040354751:runtime/mcp_server_agentcore_8803e86f-6Wd4eoDqHL
+      agent_session_id: null
+    codebuild:
+      project_name: bedrock-agentcore-mcp_server_agentcore_8803e86f-builder
+      execution_role: arn:aws:iam::522040354751:role/AmazonBedrockAgentCoreSDKCodeBuild-us-east-1-ffa0863889
+      source_bucket: bedrock-agentcore-codebuild-sources-522040354751-us-east-1
+    authorizer_configuration:
+      customJWTAuthorizer:
+        allowedClients:
+        - 37k8l7q29vn729f2tm5of64ot4
+        discoveryUrl: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_mM5dgziwb/.well-known/openid-configuration
+    oauth_configuration: null
