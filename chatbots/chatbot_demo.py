@@ -83,7 +83,19 @@ if "agent" not in st.session_state or st.session_state.get("current_model") != m
     try:
         st.session_state.current_model = model_id
 
-        # PASTE YOUR CODE HERE
+        boto3_session = boto3.session.Session()
+        region = boto3_session.region_name or "us-east-1"
+        
+        bedrock_model = BedrockModel(
+            model_id=st.session_state.current_model,
+            temperature=temperature,
+            region=region
+        )
+
+        st.session_state.agent = Agent(
+            system_prompt="You are a helpful AI assistant. Be conversational and maintain context throughout our chat.",
+            model=bedrock_model
+        )
 
         # Show success message
         st.success(f"✅ Initialized with {selected_model_info['name']}")
